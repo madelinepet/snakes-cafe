@@ -26,4 +26,9 @@
 ### Tuesday 8/14/2018 9:25PM: Feeling good, and tests are there. I can't figure out what else I can test based on the assignment as all the functions seem to take in user input or merely print.
 ### Tuesday 8/14/2018 9:49PM: Polishing touches with sales tax and neatening up display and prices.
 ### Wednesday 8/15/2018 3:12PM: Day 3: Added 9 items to each menu.
+### Wednesday 8/15/2018 3:49PM: Added a sides display function that displays sides multiple times.
+### Wednesday 8/15/2018 4:12PM: Now have a subtotal when items added to cart and each item starts with a stock quantity of 10.
+
+
+
 
