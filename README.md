@@ -19,3 +19,4 @@
 ### Monday 8/13/2018 3:30 PM: Scaffolding set up and first readme update completed.
 ### Monday 8/13/2018 4:30 PM: Program shows menu and prompts user.
 ### Monday 8/13/2018 5:26PM: Program runs smoothly for corner cases.
+### Tuesday 8/14/2018 1:04PM: Test_plan.md created.
