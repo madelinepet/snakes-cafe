@@ -6,35 +6,59 @@ WIDTH = 96
 
 menu = [
     {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.00},
-    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 4.00},
+    {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.00},
+    {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.00},
+    {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.00},
+    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.00},
     {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.00},
     {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.00},
     {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.00},
     {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.00},
+
     {"item": "salmon", "count": 0, "kind": "entrees", "price": 10},
     {"item": "steak", "count": 0, "kind": "entrees", "price": 15.00},
     {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.00},
     {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.00},
     {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.00},
     {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.00},
+    {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.00},
+    {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.00},
+    {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.00},
+
+
     {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.00},
     {"item": "cake", "count": 0, "kind": "desserts", "price": 9.00},
     {"item": "pie", "count": 0, "kind": "desserts", "price": 8.00},
     {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.00},
     {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.00},
     {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.00},
+    {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.00},
+    {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.00},
+    {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.00},
+
+
     {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.00},
     {"item": "tea", "count": 0, "kind": "drinks", "price": 3.00},
     {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.00},
     {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.00},
     {"item": "wine", "count": 0, "kind": "drinks", "price": 99.00},
     {"item": "milk", "count": 0, "kind": "drinks", "price": 88.00},
+    {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.00},
+    {"item": "water", "count": 0, "kind": "drinks", "price": 2.00},
+    {"item": "pain", "count": 0, "kind": "drinks", "price": 11.00},
+
+
+
     {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.00},
     {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.00},
     {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.00},
     {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.00},
     {"item": "fruit", "count": 0, "kind": "sides", "price": 12.00},
     {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.00},
+    {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.00},
+    {"item": "rage", "count": 0, "kind": "sides", "price": 2.00},
+    {"item": "joy", "count": 0, "kind": "sides", "price": 1.00},
+
 ]
 
 
