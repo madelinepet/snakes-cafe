@@ -34,10 +34,17 @@ menu = [
     {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 5},
     {"item": "wine", "count": 0, "kind": "drinks", "price": 5},
     {"item": "milk", "count": 0, "kind": "drinks", "price": 5},
+    {"item": "gummy worms", "count": 0, "kind": "sides", "price": 5},
+    {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 5},
+    {"item": "frog eyes", "count": 0, "kind": "sides", "price": 5},
+    {"item": "ketchup", "count": 0, "kind": "sides", "price": 5},
+    {"item": "fruit", "count": 0, "kind": "sides", "price": 5},
+    {"item": "edible flowers", "count": 0, "kind": "sides", "price": 5},
 ]
 
 
 order = []
+order_total = 0
 
 
 def greeting():
@@ -89,6 +96,27 @@ def generate_menu():
             print(i['item'])
     print(' \n')
 
+    print(' \n')
+    print('Sides')
+    print('----------')
+    for i in menu:
+        if i['kind'] == 'sides':
+            print(i['item'])
+    print(' \n')
+
+
+def remove(order_to_remove):
+    """
+    removes an item from the order
+    """
+    if order_to_remove in order:
+        order.remove(order_to_remove)
+        for i in menu:
+            if i['count'] > 0:
+                i['count'] = i['count'] - 1
+        print('order removed')
+        check()
+
 
 def check():
     """
@@ -98,8 +126,13 @@ def check():
     if user_input == 'quit':
         exit()
     if user_input == 'menu':
-        print('in if')
         generate_menu()
+
+    if user_input == 'order':
+        display_order()
+
+    if user_input.find('remove') != -1:
+        remove(user_input[7:])
 
     for i in menu:
         if user_input == i['item']:
@@ -123,10 +156,42 @@ def run():
     check()
 
 
+def display_order():
+    """
+    displays just the items being ordered
+    """
+    for i in menu:
+        if i['count'] > 0:
+            print(str(i['item']) + ' x' + str(i['count']))
+
+    print(' \n')
+    total_cost()
+
+
+def total_cost():
+    """
+    totals the cost of the order
+    """
+    global order_total
+    for i in menu:
+        if i['item'] in order:
+            order_total += i['price']
+
+    print('Your total is $' + str(order_total))
+    print(' \n')
+
+
+
 def exit():
-    print(dedent('''
-    Thank you! Your order has been placed!
-    '''))
+    print('Thank you! Your order has been placed: ')
+    for i in menu:
+        if i['count'] > 0:
+            print(' \n')
+            print(str(i['item']) + ' x' + str(i['count']))
+
+    print(' \n')
+    print('Your total is $' + str(order_total))
+    print(' \n')
     sys.exit()
 
 
