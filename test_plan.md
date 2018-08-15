@@ -1,5 +1,7 @@
 # Test Plan
 
+## Test that fns exist.
+
 ## Test that no user input prompts response to choose something on the menu in the check fn.
 
 ## Test that quit quits in the quit fn.

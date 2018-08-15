@@ -23,4 +23,5 @@
 ### Tuesday 8/14/2018 5:04PM: Menu display function works when the user types menu, menu now stored in dicts, no tests yet.
 ### Tuesday 8/14/2018 6:52PM: Basic functionality is there, but there is some erratic behavior with order display.
 ### Tuesday 8/14/2018 9:05PM: Mostly up to speed, but lacking tests!
+### Tuesday 8/14/2018 9:25PM: Feeling good, and tests are there. I can't figure out what else I can test based on the assignment as all the functions seem to take in user input or merely print.
 
