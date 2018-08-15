@@ -1,14 +1,9 @@
 from textwrap import dedent
 import sys
+import uuid
 
 WIDTH = 96
 
-BANK = [
-    {
-        'question': 'What would you like to order?',
-        'number': 0,
-    },
-]
 menu = [
     {"item": "wings", "count": 0, "kind": "appetizers", "price": 5},
     {"item": "cookies", "count": 0, "kind": "appetizers", "price": 4},
@@ -44,7 +39,6 @@ menu = [
 
 
 order = []
-order_total = 0
 
 
 def greeting():
@@ -72,28 +66,28 @@ def generate_menu():
     print('-----------')
     for i in menu:
         if i['kind'] == 'appetizers':
-            print(i['item'])
+            print(str(i['item']) + ' $' + str(i['price']))
 
     print(' \n')
     print('Entrees')
     print('----------')
     for i in menu:
         if i['kind'] == 'entrees':
-            print(i['item'])
+            print(str(i['item']) + ' $' + str(i['price']))
 
     print(' \n')
     print('Desserts')
     print('----------')
     for i in menu:
         if i['kind'] == 'desserts':
-            print(i['item'])
+            print(str(i['item']) + ' $' + str(i['price']))
 
     print(' \n')
     print('Drinks')
     print('----------')
     for i in menu:
         if i['kind'] == 'drinks':
-            print(i['item'])
+            print(str(i['item']) + ' $' + str(i['price']))
     print(' \n')
 
     print(' \n')
@@ -101,7 +95,7 @@ def generate_menu():
     print('----------')
     for i in menu:
         if i['kind'] == 'sides':
-            print(i['item'])
+            print(str(i['item']) + ' $' + str(i['price']))
     print(' \n')
 
 
@@ -114,15 +108,14 @@ def remove(order_to_remove):
         for i in menu:
             if i['count'] > 0:
                 i['count'] = i['count'] - 1
-        print('order removed')
-        check()
+        print('One order of ' + order_to_remove + ' removed')
 
 
 def check():
     """
     checks the user input for exit, if item already in cart, or if user input is invalid
     """
-    user_input = input('What would you like to order? ').lower()
+    user_input = input('What would you like to order? Or type "order" to see what is in your cart: ').lower()
     if user_input == 'quit':
         exit()
     if user_input == 'menu':
@@ -160,11 +153,12 @@ def display_order():
     """
     displays just the items being ordered
     """
+    print(' \n')
+    if not len(order):
+        print('Your cart is empty!')
     for i in menu:
         if i['count'] > 0:
             print(str(i['item']) + ' x' + str(i['count']))
-
-    print(' \n')
     total_cost()
 
 
@@ -172,7 +166,7 @@ def total_cost():
     """
     totals the cost of the order
     """
-    global order_total
+    order_total = 0
     for i in menu:
         if i['item'] in order:
             order_total += i['price']
@@ -181,17 +175,12 @@ def total_cost():
     print(' \n')
 
 
-
 def exit():
-    print('Thank you! Your order has been placed: ')
-    for i in menu:
-        if i['count'] > 0:
-            print(' \n')
-            print(str(i['item']) + ' x' + str(i['count']))
-
+    order_num = uuid.uuid4()
     print(' \n')
-    print('Your total is $' + str(order_total))
-    print(' \n')
+    print('Your order is #' + str(order_num))
+    display_order()
+    total_cost()
     sys.exit()
 
 
