@@ -10,6 +10,7 @@ import pytest
 def test_remove_module_exists():
     assert remove
 
+
 def test_check_module_exists():
     assert check
 

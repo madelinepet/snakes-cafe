@@ -5,36 +5,36 @@ import uuid
 WIDTH = 96
 
 menu = [
-    {"item": "wings", "count": 0, "kind": "appetizers", "price": 5},
-    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 4},
-    {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6},
-    {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3},
-    {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6},
-    {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7},
+    {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.00},
+    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 4.00},
+    {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.00},
+    {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.00},
+    {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.00},
+    {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.00},
     {"item": "salmon", "count": 0, "kind": "entrees", "price": 10},
-    {"item": "steak", "count": 0, "kind": "entrees", "price": 15},
-    {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25},
-    {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26},
-    {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35},
-    {"item": "pasta", "count": 0, "kind": "entrees", "price": 25},
-    {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "cake", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "pie", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "banana split", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 5},
-    {"item": "coffee", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "tea", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "wine", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "milk", "count": 0, "kind": "drinks", "price": 5},
-    {"item": "gummy worms", "count": 0, "kind": "sides", "price": 5},
-    {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 5},
-    {"item": "frog eyes", "count": 0, "kind": "sides", "price": 5},
-    {"item": "ketchup", "count": 0, "kind": "sides", "price": 5},
-    {"item": "fruit", "count": 0, "kind": "sides", "price": 5},
-    {"item": "edible flowers", "count": 0, "kind": "sides", "price": 5},
+    {"item": "steak", "count": 0, "kind": "entrees", "price": 15.00},
+    {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.00},
+    {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.00},
+    {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.00},
+    {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.00},
+    {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.00},
+    {"item": "cake", "count": 0, "kind": "desserts", "price": 9.00},
+    {"item": "pie", "count": 0, "kind": "desserts", "price": 8.00},
+    {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.00},
+    {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.00},
+    {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.00},
+    {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.00},
+    {"item": "tea", "count": 0, "kind": "drinks", "price": 3.00},
+    {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.00},
+    {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.00},
+    {"item": "wine", "count": 0, "kind": "drinks", "price": 99.00},
+    {"item": "milk", "count": 0, "kind": "drinks", "price": 88.00},
+    {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.00},
+    {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.00},
+    {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.00},
+    {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.00},
+    {"item": "fruit", "count": 0, "kind": "sides", "price": 12.00},
+    {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.00},
 ]
 
 
@@ -158,8 +158,7 @@ def display_order():
         print('Your cart is empty!')
     for i in menu:
         if i['count'] > 0:
-            print(str(i['item']) + ' x' + str(i['count']))
-    total_cost()
+            print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(i['price']))
 
 
 def total_cost():
@@ -170,16 +169,26 @@ def total_cost():
     for i in menu:
         if i['item'] in order:
             order_total += i['price']
-
-    print('Your total is $' + str(order_total))
+    tax = order_total * 0.101
+    total_with_tax = tax + order_total
+    print('--------------------------------')
+    print('Subtotal $' + str(order_total))
     print(' \n')
+    print('Sales Tax $' + str(round(tax, 2)))
+    print(' \n')
+    print('Total Due $' + str(round(total_with_tax, 2)))
+    print('**********************************')
 
 
 def exit():
     order_num = uuid.uuid4()
-    print(' \n')
-    print('Your order is #' + str(order_num))
+    print('The Snakes Cafe')
+    print('Eatability Counts')
+
+    print('Order #' + str(order_num))
+    print('==============================')
     display_order()
+    print('------------------------------')
     total_cost()
     sys.exit()
 
