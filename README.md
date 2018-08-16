@@ -31,5 +31,5 @@
 ### Wednesday 8/15/2018 7:10PM: Have a CSV file and am printing the data to the console, but it has not been formatted yet. The program still draws from the old menu.
 ### Wednesday 8/15/2018 7:48PM: The CSV data works like a buggy version of my old hard-coded menu. When item added to cart, it adds a bunch of times. I need to figure out another way to store the count for each item.
 ### Wednesday 8/15/2018 8:14PM: Now each item has a count again, so I can use my original code without that bugging. Still adding way too mcuh to cart, though, and not totalling quite right.
-
+### Wednesday 8/15/2018 8:42PM: Fixed refactoring indent bug that I hadn't noticed was why everything was breaking. Now I seem to have basic functionality again. Now to add some of the other lab requirements.
 

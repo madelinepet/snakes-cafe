@@ -167,22 +167,22 @@ def add_to_cart(user_input):
     global order_total_before_tax
     for i in menu:
         if user_input == i['item']:
-            if user_input in order:
-                    i['count'] += 1
-                    print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
-                    for i in menu:
-                        if i['item'] in order:
-                            order_total_before_tax += i['price']
-                    print('Subtotal $' + str(round(order_total_before_tax, 2)))
-                    order.append(user_input)
-        else:
-            print('One order of ' + user_input + ' has been added to your cart! ')
-            for i in menu:
-                if i['item'] == user_input:
-                    order_total_before_tax += i['price']
-                    print('Subtotal $' + str(round(order_total_before_tax, 2)))
-                    i['count'] = 1
-                    order.append(user_input)
+                if user_input in order:
+                        i['count'] += 1
+                        print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
+                        for i in menu:
+                            if i['item'] in order:
+                                order_total_before_tax += i['price']
+                        print('Subtotal $' + str(round(order_total_before_tax, 2)))
+                        order.append(user_input)
+                else:
+                    print('One order of ' + user_input + ' has been added to your cart! ')
+    for i in menu:
+        if i['item'] == user_input:
+            order_total_before_tax += i['price']
+            print('Subtotal $' + str(round(order_total_before_tax, 2)))
+            i['count'] = 1
+            order.append(user_input)
     check()
 
 
