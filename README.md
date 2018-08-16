@@ -28,7 +28,7 @@
 ### Wednesday 8/15/2018 3:12PM: Day 3: Added 9 items to each menu.
 ### Wednesday 8/15/2018 3:49PM: Added a sides display function that displays sides multiple times.
 ### Wednesday 8/15/2018 4:12PM: Now have a subtotal when items added to cart and each item starts with a stock quantity of 10.
-
+### Wednesday 8/15/2018 7:10PM: Have a CSV file and am printing the data to the console, but it has not been formatted yet. The program still draws from the old menu.
 
 
 

@@ -1,0 +1,46 @@
+    item,kind,price,quantity
+    wings,appetizers,5.11,10
+    bacon bites,appetizers,7.11,10
+    pork buns,appetizers,6.11,10
+    brush with death,appetizers,6.11,10
+    cookies,appetizers,5.11,10
+    spring rolls,appetizers,6.11,10
+    pizza bagles,appetizers,3.11,10
+    cheese sticks,appetizers,6.11,10
+    gyoza,appetizers,7.11,10
+    salmon,entrees,10.99,10
+    steak,entrees,15.99,10
+    meat tornado,entrees,25.99,10
+    a literal garden,entrees,26.99,10
+    garden gnomes,entrees,35.99,10
+    pasta,entrees,25.99,10
+    lasagna,entrees,27.99,10
+    lame salad,entrees,26.99,10
+    sad vampire,entrees,28.99,10
+    ice cream,desserts,5.22,10
+    cake,desserts,9.22,10
+    pie,desserts,8.22,10
+    banana split,desserts,11.22,10
+    fairy dust,desserts,111.22,10
+    solid cocktail,desserts,4.22,10
+    cup of dirt,desserts,7.22,10
+    bread pudding,desserts,9.22,10
+    solitude,desserts,3.22,10
+    coffee,drinks,45.33,10
+    tea,drinks,3.33,10
+    blood of the innocent,drinks,5.33,10
+    cranberry juice,drinks,7.33,10
+    wine,drinks,99.33,10
+    milk,drinks,88.33,10
+    newt broth,drinks,3.33,10
+    water,drinks,2.33,10
+    pain,drinks,11.33,10
+    gummy worms,sides,2.44,10
+    mashed potatoes,sides,2.44,10
+    frog eyes,sides,7.44,10
+    ketchup,sides,4.44,10
+    fruit,sides,12.44,10
+    edible flowers,sides,33.44,10
+    meatballs,sides,3.44,10
+    rage,sides,2.44,10
+    joy,sides,1.44,10
