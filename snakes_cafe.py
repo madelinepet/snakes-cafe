@@ -10,6 +10,7 @@ with open('menu.csv', newline='') as csvfile:
             dict_row = dict(row)
             dict_row['price'] = float(dict_row['price'])
             dict_row['quantity'] = int(dict_row['quantity'])
+            dict_row['count'] = 0
             menu.append(dict_row)
 
 
