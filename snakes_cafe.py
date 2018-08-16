@@ -85,6 +85,7 @@ def greeting():
     ln_two = 'Please see our menu below.'
     ln_three = 'To quit at any time, type "quit"'
     ln_four = 'To view menu, type "menu"'
+    ln_five = 'To view order, type "order"'
     print(dedent(f'''
             {'*' * WIDTH}
             {' ' * ((WIDTH - len(ln_one) // 2)) + ln_one + (' ' * ((WIDTH - len(ln_one)) // 2))}
@@ -92,8 +93,8 @@ def greeting():
 
             {' ' * ((WIDTH - len(ln_three) // 2)) + ln_three + (' ' * ((WIDTH - len(ln_three)) // 2))}
 
-             {' ' * ((WIDTH - len(ln_four) // 2)) + ln_four + (' ' * ((WIDTH - len(ln_four)) // 2))}
-
+            {' ' * ((WIDTH - len(ln_four) // 2)) + ln_four + (' ' * ((WIDTH - len(ln_four)) // 2))}
+            {' ' * ((WIDTH - len(ln_five) // 2)) + ln_five + (' ' * ((WIDTH - len(ln_five)) // 2))}
             {'*' * WIDTH}
         '''))
 
@@ -151,15 +152,6 @@ def remove(order_to_remove):
         print('One order of ' + order_to_remove + ' removed')
 
 
-def display_selected_category(selected_kind):
-    """
-    Shows the items in a category that the user types
-    """
-    for i in menu:
-        if i['kind'] == selected_kind:
-            print(i['item'])
-
-
 def add_to_cart(user_input):
     """
     Manages the adding of items to cart
@@ -205,7 +197,7 @@ def check():
 
     for i in menu:
         if user_input == i['kind']:
-            display_selected_category(user_input)
+            print(i['item'] + str(i['price']))
 
     for i in menu:
         if user_input == i['item']:
