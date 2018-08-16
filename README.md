@@ -33,4 +33,5 @@
 ### Wednesday 8/15/2018 8:14PM: Now each item has a count again, so I can use my original code without that bugging. Still adding way too mcuh to cart, though, and not totalling quite right.
 ### Wednesday 8/15/2018 8:42PM: Fixed refactoring indent bug that I hadn't noticed was why everything was breaking. Now I seem to have basic functionality again. Now to add some of the other lab requirements.
 ### Wednesday 8/15/2018 9:14PM: Fixed display category bug. Too many for loops, deleted whole function.
+### Wednesday 8/15/2018 9:34PM: Submission for the day. Totaling bug
 
