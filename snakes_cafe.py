@@ -14,7 +14,7 @@ try:
                 dict_row = dict(row)
                 dict_row['price'] = float(dict_row['price'])
                 dict_row['quantity'] = int(dict_row['quantity'])
-                # dict_row['count'] = 0
+                dict_row['count'] = 0
                 menu.append(dict_row)
 except:
 
@@ -74,29 +74,63 @@ except:
         {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
 
     ]
+order_list = []
 
 
 class Order:
 
-    def __init__(self, count, uuid, order_list):
+    def __init__(self, uuid, order_list, count=None):
         """ Constructs the initial instace
         """
-        pass
+        self.uuid = uuid
+        self.order_list = order_list
+        self.count = count
 
-    def add_item(self, item):
+    def add_item(self, user_input):
         """ Adds items to cart
         """
-        pass
+        order_total_before_tax = 0
+        for i in menu:
+            if user_input == i['item']:
+                    if user_input in order_list:
+                            i['count'] += 1
+                            print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
+                            for i in menu:
+                                if i['item'] in order_list:
+                                    order_total_before_tax += i['price']
+                            print('Subtotal $' + str(round(order_total_before_tax, 2)))
+                            order_list.append(user_input)
+                    else:
+                        print('One order of ' + user_input + ' has been added to your cart! ')
+        for i in menu:
+            if i['item'] == user_input:
+                order_total_before_tax += i['price']
+                print('Subtotal $' + str(round(order_total_before_tax, 2)))
+                i['count'] = 1
+                order_list.append(user_input)
+        check()
 
-    def remove_item(self, item):
-        """ Remove items from cart
+    def remove_item(self, user_input, count=1):
         """
-        pass
+        removes an item from the order
+        """
+        if user_input in order_list:
+            order_to_remove = user_input
+            order_list.remove(order_to_remove)
+            for i in menu:
+                if i['count'] > 0:
+                    i['count'] = i['count'] - 1
+            print('One order of ' + order_to_remove + ' removed')
 
     def display_order(self, order_list, count):
         """ Display the order and total to the screen
         """
-        pass
+        print(' \n')
+        if not len(order_list):
+            print('Your cart is empty!')
+        for i in menu:
+            if i['count'] > 0:
+                print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
 
     def print_receipt(self, order_list, count):
         """ Prints the receipt to another file
@@ -109,8 +143,7 @@ class Order:
         pass
 
 
-
-order_total_before_tax = 0
+specific_order = Order(uuid, order_list, count)
 
 
 def greeting():
@@ -175,42 +208,42 @@ def generate_menu():
     print(' \n')
 
 
-def remove(order_to_remove):
-    """
-    removes an item from the order
-    """
-    if order_to_remove in order:
-        order.remove(order_to_remove)
-        for i in menu:
-            if i['count'] > 0:
-                i['count'] = i['count'] - 1
-        print('One order of ' + order_to_remove + ' removed')
+# def remove(order_to_remove):
+#     """
+#     removes an item from the order
+#     """
+#     if order_to_remove in order:
+#         order.remove(order_to_remove)
+#         for i in menu:
+#             if i['count'] > 0:
+#                 i['count'] = i['count'] - 1
+#         print('One order of ' + order_to_remove + ' removed')
 
 
-def add_to_cart(user_input):
-    """
-    Manages the adding of items to cart
-    """
-    global order_total_before_tax
-    for i in menu:
-        if user_input == i['item']:
-                if user_input in order:
-                        i['count'] += 1
-                        print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
-                        for i in menu:
-                            if i['item'] in order:
-                                order_total_before_tax += i['price']
-                        print('Subtotal $' + str(round(order_total_before_tax, 2)))
-                        order.append(user_input)
-                else:
-                    print('One order of ' + user_input + ' has been added to your cart! ')
-    for i in menu:
-        if i['item'] == user_input:
-            order_total_before_tax += i['price']
-            print('Subtotal $' + str(round(order_total_before_tax, 2)))
-            i['count'] = 1
-            order.append(user_input)
-    check()
+# def add_to_cart(user_input):
+#     """
+#     Manages the adding of items to cart
+#     """
+#     global order_total_before_tax
+#     for i in menu:
+#         if user_input == i['item']:
+#                 if user_input in order:
+#                         i['count'] += 1
+#                         print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
+#                         for i in menu:
+#                             if i['item'] in order:
+#                                 order_total_before_tax += i['price']
+#                         print('Subtotal $' + str(round(order_total_before_tax, 2)))
+#                         order.append(user_input)
+#                 else:
+#                     print('One order of ' + user_input + ' has been added to your cart! ')
+#     for i in menu:
+#         if i['item'] == user_input:
+#             order_total_before_tax += i['price']
+#             print('Subtotal $' + str(round(order_total_before_tax, 2)))
+#             i['count'] = 1
+#             order.append(user_input)
+#     check()
 
 
 def check():
@@ -236,7 +269,7 @@ def check():
 
     for i in menu:
         if user_input == i['item']:
-            add_to_cart(user_input)
+            specific_order.add_item(user_input)
     else:
         print('Please look at our menu and choose something we have!')
         check()
@@ -248,16 +281,16 @@ def run():
     check()
 
 
-def display_order():
-    """
-    displays just the items being ordered
-    """
-    print(' \n')
-    if not len(order):
-        print('Your cart is empty!')
-    for i in menu:
-        if i['count'] > 0:
-            print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
+# def display_order():
+#     """
+#     displays just the items being ordered
+#     """
+#     print(' \n')
+#     if not len(order_list):
+#         print('Your cart is empty!')
+#     for i in menu:
+#         if i['count'] > 0:
+#             print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
 
 
 def total_cost():
@@ -266,7 +299,7 @@ def total_cost():
     """
     global order_total_before_tax
     for i in menu:
-        if i['item'] in order:
+        if i['item'] in order_list:
             order_total_before_tax += i['price']
     tax = order_total_before_tax * 0.101
     total_with_tax = tax + order_total_before_tax
@@ -303,8 +336,3 @@ try:
     run()
 except KeyboardInterrupt:
     exit()
-
-"""
-dictionary of dictionaries
-category item, price, quantity
-"""
