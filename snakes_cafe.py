@@ -5,7 +5,6 @@ import csv
 
 WIDTH = 96
 
-# import pdb; pdb.set_trace()
 menu = []
 
 
@@ -92,7 +91,7 @@ def load_csv():
         return load_csv()
     else:
         try:
-            with open('file_path', newline='') as csvfile:
+            with open(file_path, newline='') as csvfile:
                 lines = csv.DictReader(csvfile)
                 menu = []
                 for row in lines:
@@ -317,3 +316,4 @@ try:
     run()
 except KeyboardInterrupt:
     exit()
+
