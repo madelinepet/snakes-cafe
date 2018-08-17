@@ -6,74 +6,104 @@ import csv
 WIDTH = 96
 
 # import pdb; pdb.set_trace()
-try:
-    with open('menu.csv', newline='') as csvfile:
-            lines = csv.DictReader(csvfile)
-            menu = []
-            for row in lines:
-                dict_row = dict(row)
-                dict_row['price'] = float(dict_row['price'])
-                dict_row['quantity'] = int(dict_row['quantity'])
-                dict_row['count'] = 0
-                menu.append(dict_row)
-except:
-
-    menu = [
-        {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-        {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-        {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-        {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-        {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-        {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-        {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.11, "quantity": 10},
-        {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-        {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-
-        {"item": "salmon", "count": 0, "kind": "entrees", "price": 10.99, "quantity": 10},
-        {"item": "steak", "count": 0, "kind": "entrees", "price": 15.99, "quantity": 10},
-        {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-        {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-        {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.99, "quantity": 10},
-        {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-        {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.99, "quantity": 10},
-        {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-        {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.99, "quantity": 10},
 
 
-        {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.22, "quantity": 10},
-        {"item": "cake", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-        {"item": "pie", "count": 0, "kind": "desserts", "price": 8.22, "quantity": 10},
-        {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.22, "quantity": 10},
-        {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.22, "quantity": 10},
-        {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.22, "quantity": 10},
-        {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.22, "quantity": 10},
-        {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-        {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.22, "quantity": 10},
+def run():
+    """ Runs the script
+    """
+    print('Which menu would you like to use? Your own .csv or our original menu?')
+    menu_input = input('Type "original" or "csv": ')
+    if menu_input == 'quit':
+        exit()
+    if menu_input == 'csv':
+        menu = load_csv()
+    else:
+        menu = [
+            {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
+            {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
+            {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+            {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+            {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
+            {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+            {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.11, "quantity": 10},
+            {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+            {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
+
+            {"item": "salmon", "count": 0, "kind": "entrees", "price": 10.99, "quantity": 10},
+            {"item": "steak", "count": 0, "kind": "entrees", "price": 15.99, "quantity": 10},
+            {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
+            {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
+            {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.99, "quantity": 10},
+            {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
+            {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.99, "quantity": 10},
+            {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
+            {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.99, "quantity": 10},
 
 
-        {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.33, "quantity": 10},
-        {"item": "tea", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-        {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.33, "quantity": 10},
-        {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.33, "quantity": 10},
-        {"item": "wine", "count": 0, "kind": "drinks", "price": 99.33, "quantity": 10},
-        {"item": "milk", "count": 0, "kind": "drinks", "price": 88.33, "quantity": 10},
-        {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-        {"item": "water", "count": 0, "kind": "drinks", "price": 2.33, "quantity": 10},
-        {"item": "pain", "count": 0, "kind": "drinks", "price": 11.33, "quantity": 10},
+            {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.22, "quantity": 10},
+            {"item": "cake", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
+            {"item": "pie", "count": 0, "kind": "desserts", "price": 8.22, "quantity": 10},
+            {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.22, "quantity": 10},
+            {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.22, "quantity": 10},
+            {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.22, "quantity": 10},
+            {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.22, "quantity": 10},
+            {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
+            {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.22, "quantity": 10},
+
+
+            {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.33, "quantity": 10},
+            {"item": "tea", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
+            {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.33, "quantity": 10},
+            {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.33, "quantity": 10},
+            {"item": "wine", "count": 0, "kind": "drinks", "price": 99.33, "quantity": 10},
+            {"item": "milk", "count": 0, "kind": "drinks", "price": 88.33, "quantity": 10},
+            {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
+            {"item": "water", "count": 0, "kind": "drinks", "price": 2.33, "quantity": 10},
+            {"item": "pain", "count": 0, "kind": "drinks", "price": 11.33, "quantity": 10},
 
 
 
-        {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-        {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-        {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.44, "quantity": 10},
-        {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.44, "quantity": 10},
-        {"item": "fruit", "count": 0, "kind": "sides", "price": 12.44, "quantity": 10},
-        {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.44, "quantity": 10},
-        {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.44, "quantity": 10},
-        {"item": "rage", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-        {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
+            {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+            {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+            {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.44, "quantity": 10},
+            {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.44, "quantity": 10},
+            {"item": "fruit", "count": 0, "kind": "sides", "price": 12.44, "quantity": 10},
+            {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.44, "quantity": 10},
+            {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.44, "quantity": 10},
+            {"item": "rage", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+            {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
 
-    ]
+        ]
+
+    greeting()
+    generate_menu()
+    check()
+
+
+def load_csv():
+    file_path = input('What is your file path?')
+    file_readable_to_file_path = file_path.split('/')
+    file = file_readable_to_file_path[-1].split('.')
+    extension = file[-1]
+    if extension != 'csv':
+        print('Please try again')
+        return load_csv()
+    else:
+        try:
+            with open('file_path', newline='') as csvfile:
+                lines = csv.DictReader(csvfile)
+                menu = []
+                for row in lines:
+                    dict_row = dict(row)
+                    dict_row['price'] = float(dict_row['price'])
+                    dict_row['quantity'] = int(dict_row['quantity'])
+                    dict_row['count'] = 0
+                    menu.append(dict_row)
+        except FileNotFoundError:
+            print('File not found, please try again or use our original menu.')
+            return run()
+
+
 order_list = []
 order_total_before_tax = 0
 
@@ -109,7 +139,7 @@ class Order:
                 print('Subtotal $' + str(round(order_total_before_tax, 2)))
                 i['count'] = 1
                 order_list.append(user_input)
-        # check()
+        check()
 
     def remove_item(self, user_input, count=1):
         """
@@ -122,6 +152,7 @@ class Order:
                 if i['count'] > 0:
                     i['count'] = i['count'] - 1
             print('One order of ' + order_to_remove + ' removed')
+        check()
 
     def display_order(self, order_list):
         """ Display the order and total to the screen
@@ -132,6 +163,7 @@ class Order:
         for i in menu:
             if i['count'] > 0:
                 print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
+        check()
 
     def print_receipt(self, order_list, count):
         """ Prints the receipt to another file
@@ -225,7 +257,7 @@ def check():
         Order.display_order(specific_order, order_list)
 
     elif user_input.find('remove') != -1:
-        Order.remove_item(user_input[7:])
+        Order.remove_item(specific_order, user_input[7:])
 
     for i in menu:
         if user_input == i['kind']:
@@ -239,12 +271,6 @@ def check():
                 i['count'] = 1
         else:
             pass
-
-
-def run():
-    greeting()
-    generate_menu()
-    check()
 
 
 def total_cost():
@@ -273,7 +299,7 @@ def exit():
     order_num = uuid.uuid4()
     print('The Snakes Cafe')
     print('Eatability Counts')
-
+    Order.display_order(specific_order, order_list)
     print('Order #' + str(order_num))
     print('==============================')
     print('------------------------------')
