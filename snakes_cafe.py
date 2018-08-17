@@ -122,7 +122,7 @@ class Order:
                     i['count'] = i['count'] - 1
             print('One order of ' + order_to_remove + ' removed')
 
-    def display_order(self, order_list, count):
+    def display_order(self, order_list):
         """ Display the order and total to the screen
         """
         print(' \n')
@@ -143,7 +143,7 @@ class Order:
         pass
 
 
-specific_order = Order(uuid, order_list, count)
+specific_order = Order(uuid, order_list)
 
 
 def greeting():
@@ -208,89 +208,43 @@ def generate_menu():
     print(' \n')
 
 
-# def remove(order_to_remove):
-#     """
-#     removes an item from the order
-#     """
-#     if order_to_remove in order:
-#         order.remove(order_to_remove)
-#         for i in menu:
-#             if i['count'] > 0:
-#                 i['count'] = i['count'] - 1
-#         print('One order of ' + order_to_remove + ' removed')
-
-
-# def add_to_cart(user_input):
-#     """
-#     Manages the adding of items to cart
-#     """
-#     global order_total_before_tax
-#     for i in menu:
-#         if user_input == i['item']:
-#                 if user_input in order:
-#                         i['count'] += 1
-#                         print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
-#                         for i in menu:
-#                             if i['item'] in order:
-#                                 order_total_before_tax += i['price']
-#                         print('Subtotal $' + str(round(order_total_before_tax, 2)))
-#                         order.append(user_input)
-#                 else:
-#                     print('One order of ' + user_input + ' has been added to your cart! ')
-#     for i in menu:
-#         if i['item'] == user_input:
-#             order_total_before_tax += i['price']
-#             print('Subtotal $' + str(round(order_total_before_tax, 2)))
-#             i['count'] = 1
-#             order.append(user_input)
-#     check()
-
-
 def check():
     """
     checks the user input for exit, if item already in cart, or if user input is invalid
     """
     global order_total_before_tax
     user_input = input('What would you like to order? Or type "order" to see what is in your cart: ').lower()
+    input_list = user_input.split(' ')
     if user_input == 'quit':
         exit()
-    if user_input == 'menu':
+    elif user_input == 'menu':
         generate_menu()
 
-    if user_input == 'order':
-        display_order()
+    elif user_input == 'order':
+        Order.display_order(order_list)
 
-    if user_input.find('remove') != -1:
-        remove(user_input[7:])
+    elif user_input.find('remove') != -1:
+        Order.remove_item(user_input[7:])
 
     for i in menu:
         if user_input == i['kind']:
             print(i['item'] + str(i['price']))
-
     for i in menu:
-        if user_input == i['item']:
+        if input_list[0] == i['item']:
             specific_order.add_item(user_input)
-    else:
-        print('Please look at our menu and choose something we have!')
-        check()
+            if input_list[1]:
+                i['count'] = input_list[1]
+            else:
+                i['count'] = 1
+        elif input_list[0] != i['item']:
+            print('Please look at our menu and choose something we have!')
+            # check()
 
 
 def run():
     greeting()
     generate_menu()
     check()
-
-
-# def display_order():
-#     """
-#     displays just the items being ordered
-#     """
-#     print(' \n')
-#     if not len(order_list):
-#         print('Your cart is empty!')
-#     for i in menu:
-#         if i['count'] > 0:
-#             print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
 
 
 def total_cost():
@@ -322,7 +276,6 @@ def exit():
 
     print('Order #' + str(order_num))
     print('==============================')
-    display_order()
     print('------------------------------')
     total_cost()
     sys.exit()
