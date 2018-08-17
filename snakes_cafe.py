@@ -6,11 +6,13 @@ import csv
 WIDTH = 96
 
 # import pdb; pdb.set_trace()
+menu = []
 
 
 def run():
     """ Runs the script
     """
+    global menu
     print('Which menu would you like to use? Your own .csv or our original menu?')
     menu_input = input('Type "original" or "csv": ')
     if menu_input == 'quit':
@@ -81,7 +83,7 @@ def run():
 
 
 def load_csv():
-    file_path = input('What is your file path?')
+    file_path = input('What is your file path?: ')
     file_readable_to_file_path = file_path.split('/')
     file = file_readable_to_file_path[-1].split('.')
     extension = file[-1]
@@ -101,7 +103,7 @@ def load_csv():
                     menu.append(dict_row)
         except FileNotFoundError:
             print('File not found, please try again or use our original menu.')
-            return run()
+            return load_csv()
 
 
 order_list = []
