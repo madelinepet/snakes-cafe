@@ -237,10 +237,8 @@ def check():
                 i['count'] = input_list[1]
             else:
                 i['count'] = 1
-            break
-        elif input_list[0] != i['item']:
-            # print('Please look at our menu and choose something we have!')
-            # check()
+        else:
+            pass
 
 
 def run():
