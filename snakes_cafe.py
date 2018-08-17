@@ -5,62 +5,6 @@ import csv
 
 WIDTH = 96
 
-original_menu = [
-    {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-    {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-    {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-    {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.11, "quantity": 10},
-    {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-
-    {"item": "salmon", "count": 0, "kind": "entrees", "price": 10.99, "quantity": 10},
-    {"item": "steak", "count": 0, "kind": "entrees", "price": 15.99, "quantity": 10},
-    {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-    {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-    {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.99, "quantity": 10},
-    {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-    {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.99, "quantity": 10},
-    {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-    {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.99, "quantity": 10},
-
-
-    {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.22, "quantity": 10},
-    {"item": "cake", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-    {"item": "pie", "count": 0, "kind": "desserts", "price": 8.22, "quantity": 10},
-    {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.22, "quantity": 10},
-    {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.22, "quantity": 10},
-    {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.22, "quantity": 10},
-    {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.22, "quantity": 10},
-    {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-    {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.22, "quantity": 10},
-
-
-    {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.33, "quantity": 10},
-    {"item": "tea", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-    {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.33, "quantity": 10},
-    {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.33, "quantity": 10},
-    {"item": "wine", "count": 0, "kind": "drinks", "price": 99.33, "quantity": 10},
-    {"item": "milk", "count": 0, "kind": "drinks", "price": 88.33, "quantity": 10},
-    {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-    {"item": "water", "count": 0, "kind": "drinks", "price": 2.33, "quantity": 10},
-    {"item": "pain", "count": 0, "kind": "drinks", "price": 11.33, "quantity": 10},
-
-
-
-    {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.44, "quantity": 10},
-    {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.44, "quantity": 10},
-    {"item": "fruit", "count": 0, "kind": "sides", "price": 12.44, "quantity": 10},
-    {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.44, "quantity": 10},
-    {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.44, "quantity": 10},
-    {"item": "rage", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
-
-]
 
 try:
     with open('menu.csv', newline='') as csvfile:
@@ -70,12 +14,102 @@ try:
                 dict_row = dict(row)
                 dict_row['price'] = float(dict_row['price'])
                 dict_row['quantity'] = int(dict_row['quantity'])
-                dict_row['count'] = 0
+                # dict_row['count'] = 0
                 menu.append(dict_row)
 except:
-    menu = original_menu
 
-order = []
+    menu = [
+        {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
+        {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
+        {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+        {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+        {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
+        {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+        {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.11, "quantity": 10},
+        {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
+        {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
+
+        {"item": "salmon", "count": 0, "kind": "entrees", "price": 10.99, "quantity": 10},
+        {"item": "steak", "count": 0, "kind": "entrees", "price": 15.99, "quantity": 10},
+        {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
+        {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
+        {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.99, "quantity": 10},
+        {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
+        {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.99, "quantity": 10},
+        {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
+        {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.99, "quantity": 10},
+
+
+        {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.22, "quantity": 10},
+        {"item": "cake", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
+        {"item": "pie", "count": 0, "kind": "desserts", "price": 8.22, "quantity": 10},
+        {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.22, "quantity": 10},
+        {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.22, "quantity": 10},
+        {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.22, "quantity": 10},
+        {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.22, "quantity": 10},
+        {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
+        {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.22, "quantity": 10},
+
+
+        {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.33, "quantity": 10},
+        {"item": "tea", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
+        {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.33, "quantity": 10},
+        {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.33, "quantity": 10},
+        {"item": "wine", "count": 0, "kind": "drinks", "price": 99.33, "quantity": 10},
+        {"item": "milk", "count": 0, "kind": "drinks", "price": 88.33, "quantity": 10},
+        {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
+        {"item": "water", "count": 0, "kind": "drinks", "price": 2.33, "quantity": 10},
+        {"item": "pain", "count": 0, "kind": "drinks", "price": 11.33, "quantity": 10},
+
+
+
+        {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+        {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+        {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.44, "quantity": 10},
+        {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.44, "quantity": 10},
+        {"item": "fruit", "count": 0, "kind": "sides", "price": 12.44, "quantity": 10},
+        {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.44, "quantity": 10},
+        {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.44, "quantity": 10},
+        {"item": "rage", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
+        {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
+
+    ]
+
+
+class Order:
+
+    def __init__(self, count, uuid, order_list):
+        """ Constructs the initial instace
+        """
+        pass
+
+    def add_item(self, item):
+        """ Adds items to cart
+        """
+        pass
+
+    def remove_item(self, item):
+        """ Remove items from cart
+        """
+        pass
+
+    def display_order(self, order_list, count):
+        """ Display the order and total to the screen
+        """
+        pass
+
+    def print_receipt(self, order_list, count):
+        """ Prints the receipt to another file
+        """
+        pass
+
+    def __repr__(self):
+        """ Formatting for anything that needs to be read by humans
+        """
+        pass
+
+
+
 order_total_before_tax = 0
 
 
@@ -265,7 +299,10 @@ if __name__ == '__main__':
     """
     runs the file on start
     """
+try:
     run()
+except KeyboardInterrupt:
+    exit()
 
 """
 dictionary of dictionaries
