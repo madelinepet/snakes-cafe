@@ -5,7 +5,7 @@ import csv
 
 WIDTH = 96
 
-
+# import pdb; pdb.set_trace()
 try:
     with open('menu.csv', newline='') as csvfile:
             lines = csv.DictReader(csvfile)
@@ -75,6 +75,7 @@ except:
 
     ]
 order_list = []
+order_total_before_tax = 0
 
 
 class Order:
@@ -89,7 +90,7 @@ class Order:
     def add_item(self, user_input):
         """ Adds items to cart
         """
-        order_total_before_tax = 0
+        global order_total_before_tax
         for i in menu:
             if user_input == i['item']:
                     if user_input in order_list:
@@ -108,7 +109,7 @@ class Order:
                 print('Subtotal $' + str(round(order_total_before_tax, 2)))
                 i['count'] = 1
                 order_list.append(user_input)
-        check()
+        # check()
 
     def remove_item(self, user_input, count=1):
         """
@@ -221,7 +222,7 @@ def check():
         generate_menu()
 
     elif user_input == 'order':
-        Order.display_order(order_list)
+        Order.display_order(specific_order, order_list)
 
     elif user_input.find('remove') != -1:
         Order.remove_item(user_input[7:])
@@ -232,12 +233,13 @@ def check():
     for i in menu:
         if input_list[0] == i['item']:
             specific_order.add_item(user_input)
-            if input_list[1]:
+            if (len(input_list) > 1):
                 i['count'] = input_list[1]
             else:
                 i['count'] = 1
+            break
         elif input_list[0] != i['item']:
-            print('Please look at our menu and choose something we have!')
+            # print('Please look at our menu and choose something we have!')
             # check()
 
 
