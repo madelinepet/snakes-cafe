@@ -5,78 +5,131 @@ import csv
 
 WIDTH = 96
 
-original_menu = [
-    {"item": "wings", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-    {"item": "bacon bites", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-    {"item": "pork buns", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "brush with death", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "cookies", "count": 0, "kind": "appetizers", "price": 5.11, "quantity": 10},
-    {"item": "spring rolls", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "pizza bagles", "count": 0, "kind": "appetizers", "price": 3.11, "quantity": 10},
-    {"item": "cheese sticks", "count": 0, "kind": "appetizers", "price": 6.11, "quantity": 10},
-    {"item": "gyoza", "count": 0, "kind": "appetizers", "price": 7.11, "quantity": 10},
-
-    {"item": "salmon", "count": 0, "kind": "entrees", "price": 10.99, "quantity": 10},
-    {"item": "steak", "count": 0, "kind": "entrees", "price": 15.99, "quantity": 10},
-    {"item": "meat tornado", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-    {"item": "a literal garden", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-    {"item": "garden gnomes", "count": 0, "kind": "entrees", "price": 35.99, "quantity": 10},
-    {"item": "pasta", "count": 0, "kind": "entrees", "price": 25.99, "quantity": 10},
-    {"item": "lasagna", "count": 0, "kind": "entrees", "price": 27.99, "quantity": 10},
-    {"item": "lame salad", "count": 0, "kind": "entrees", "price": 26.99, "quantity": 10},
-    {"item": "sad vampire", "count": 0, "kind": "entrees", "price": 28.99, "quantity": 10},
+# menu = []
 
 
-    {"item": "ice cream", "count": 0, "kind": "desserts", "price": 5.22, "quantity": 10},
-    {"item": "cake", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-    {"item": "pie", "count": 0, "kind": "desserts", "price": 8.22, "quantity": 10},
-    {"item": "banana split", "count": 0, "kind": "desserts", "price": 11.22, "quantity": 10},
-    {"item": "fairy dust", "count": 0, "kind": "desserts", "price": 111.22, "quantity": 10},
-    {"item": "solid cocktail", "count": 0, "kind": "desserts", "price": 4.22, "quantity": 10},
-    {"item": "cup of dirt", "count": 0, "kind": "desserts", "price": 7.22, "quantity": 10},
-    {"item": "bread pudding", "count": 0, "kind": "desserts", "price": 9.22, "quantity": 10},
-    {"item": "solitude", "count": 0, "kind": "desserts", "price": 3.22, "quantity": 10},
+def run():
+    """ Runs the script, and error handles if path is bad
+    """
+    # global menu
+    print('Which menu would you like to use? Your own .csv or our original menu?')
+    menu_input = input('Type "original" or "csv": ')
+    if menu_input == 'quit':
+        exit()
+    if menu_input == 'csv':
+        file_path = input('What is your file path?: ')
+        menu = load_csv(file_path)
+        if menu == 'Invalid File':
+            print('Please try again!')
+            run()
+        if menu == 'File Not Found':
+            print('File not found, please try again or use our original menu.')
+            run()
+
+    else:
+        menu = load_csv()
+
+    greeting()
+    generate_menu(menu)
+    check(menu)
 
 
-    {"item": "coffee", "count": 0, "kind": "drinks", "price": 45.33, "quantity": 10},
-    {"item": "tea", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-    {"item": "blood of the innocent", "count": 0, "kind": "drinks", "price": 5.33, "quantity": 10},
-    {"item": "cranberry juice", "count": 0, "kind": "drinks", "price": 7.33, "quantity": 10},
-    {"item": "wine", "count": 0, "kind": "drinks", "price": 99.33, "quantity": 10},
-    {"item": "milk", "count": 0, "kind": "drinks", "price": 88.33, "quantity": 10},
-    {"item": "newt broth", "count": 0, "kind": "drinks", "price": 3.33, "quantity": 10},
-    {"item": "water", "count": 0, "kind": "drinks", "price": 2.33, "quantity": 10},
-    {"item": "pain", "count": 0, "kind": "drinks", "price": 11.33, "quantity": 10},
+def load_csv(file_path='menu.csv'):
+    """ Takes in file path and loads a menu based on it, original menu is also loaded frm csv
+    """
+    file_readable_to_file_path = file_path.split('/')
+    file = file_readable_to_file_path[-1].split('.')
+    extension = file[-1]
+    if extension != 'csv':
+        return 'Invalid File'
+    else:
+        try:
+            with open(file_path, newline='') as csvfile:
+                lines = csv.DictReader(csvfile)
+                menu = []
+                for row in lines:
+                    dict_row = dict(row)
+                    dict_row['price'] = float(dict_row['price'])
+                    dict_row['quantity'] = int(dict_row['quantity'])
+                    dict_row['count'] = 0
+                    menu.append(dict_row)
+                return menu
+        except FileNotFoundError:
+            return 'File Not Found'
 
 
-
-    {"item": "gummy worms", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "mashed potatoes", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "frog eyes", "count": 0, "kind": "sides", "price": 7.44, "quantity": 10},
-    {"item": "ketchup", "count": 0, "kind": "sides", "price": 4.44, "quantity": 10},
-    {"item": "fruit", "count": 0, "kind": "sides", "price": 12.44, "quantity": 10},
-    {"item": "edible flowers", "count": 0, "kind": "sides", "price": 33.44, "quantity": 10},
-    {"item": "meatballs", "count": 0, "kind": "sides", "price": 3.44, "quantity": 10},
-    {"item": "rage", "count": 0, "kind": "sides", "price": 2.44, "quantity": 10},
-    {"item": "joy", "count": 0, "kind": "sides", "price": 1.44, "quantity": 10},
-
-]
-
-try:
-    with open('menu.csv', newline='') as csvfile:
-            lines = csv.DictReader(csvfile)
-            menu = []
-            for row in lines:
-                dict_row = dict(row)
-                dict_row['price'] = float(dict_row['price'])
-                dict_row['quantity'] = int(dict_row['quantity'])
-                dict_row['count'] = 0
-                menu.append(dict_row)
-except:
-    menu = original_menu
-
-order = []
 order_total_before_tax = 0
+
+
+class Order:
+
+    def __init__(self, uuid, count=None):
+        """ Constructs the initial instace
+        """
+        self.uuid = uuid
+        self.order_dict = {}
+        self.count = count
+
+    def add_item(self, item, amount=1):
+        """ Adds items to cart
+        """
+        global order_total_before_tax
+        if item['item'] in self.order_dict:
+            if self.order_dict[item['item']]['count'] + amount > item['quantity']:
+                return 'We only have ' + str(item['quantity'] - self.order_dict[item['item']]['count']) + ' in stock! Please order fewer.'
+            else:
+                self.order_dict[item['item']]['count'] += amount
+                order_total_before_tax += item['price'] * amount
+                return 'You must be hungry! Now you have ' + str(self.order_dict[item['item']]['count']) + ' orders of ' + item['item'] + '!\n Subtotal $' + str(round(order_total_before_tax, 2))
+        else:
+            if amount > item['quantity']:
+                return 'We only have ' + str(item['quantity']) + ' in stock! Please order fewer.'
+            else:
+                order_total_before_tax += item['price'] * amount
+                self.order_dict[item['item']] = {'count': amount, 'price': item['price']}
+                return str(amount) + ' order(s) of ' + item['item'] + ' has been added to your cart!\n Subtotal $' + str(round(order_total_before_tax, 2))
+
+    def remove_item(self, user_input, menu, count=1):
+        """
+        removes an item from the order
+        """
+        if user_input in order_list:
+            order_to_remove = user_input
+            order_list.remove(order_to_remove)
+            for i in menu:
+                if i['count'] > 0:
+                    i['count'] = i['count'] - 1
+            print('One order of ' + order_to_remove + ' removed')
+        check(menu)
+
+    def display_order(self):
+        """ Display the order and total to the screen
+        """
+        total = 0
+        final_string_you_should_rename_this = ''
+        if not len(specific_order.order_dict):
+            return 'Your cart is empty!'
+        for key in specific_order.order_dict.keys():
+            item_total = round(specific_order.order_dict[key]['price'] * specific_order.order_dict[key]['count'], 2)
+            # print(key + ' x' + str(specific_order.order_dict[key]['count']) + ' $' + str(item_total))
+            final_string_you_should_rename_this = final_string_you_should_rename_this + key + ' x' + str(specific_order.order_dict[key]['count']) + ' $' + str(item_total) + '\n\n'
+            total += item_total
+        final_string_you_should_rename_this = final_string_you_should_rename_this + 'Your total before tax is $' + str(total)
+        return final_string_you_should_rename_this
+
+    def print_receipt(self):
+        """ Prints the receipt to another file
+        """
+        with open(str(self.uuid) + '.txt', 'w') as f:
+            f.write(self.display_order())
+
+    def __repr__(self):
+        """ Formatting for anything that needs to be read by humans
+        """
+        pass
+
+
+specific_order = Order(uuid.uuid4())
 
 
 def greeting():
@@ -100,7 +153,7 @@ def greeting():
         '''))
 
 
-def generate_menu():
+def generate_menu(menu):
     """
     prints the full menu
     """
@@ -141,123 +194,70 @@ def generate_menu():
     print(' \n')
 
 
-def remove(order_to_remove):
-    """
-    removes an item from the order
-    """
-    if order_to_remove in order:
-        order.remove(order_to_remove)
-        for i in menu:
-            if i['count'] > 0:
-                i['count'] = i['count'] - 1
-        print('One order of ' + order_to_remove + ' removed')
-
-
-def add_to_cart(user_input):
-    """
-    Manages the adding of items to cart
-    """
-    global order_total_before_tax
-    for i in menu:
-        if user_input == i['item']:
-                if user_input in order:
-                        i['count'] += 1
-                        print('You must be hungry! Now you have ' + str(i['count']) + ' orders of ' + user_input + '!')
-                        for i in menu:
-                            if i['item'] in order:
-                                order_total_before_tax += i['price']
-                        print('Subtotal $' + str(round(order_total_before_tax, 2)))
-                        order.append(user_input)
-                else:
-                    print('One order of ' + user_input + ' has been added to your cart! ')
-    for i in menu:
-        if i['item'] == user_input:
-            order_total_before_tax += i['price']
-            print('Subtotal $' + str(round(order_total_before_tax, 2)))
-            i['count'] = 1
-            order.append(user_input)
-    check()
-
-
-def check():
+def check(menu):
     """
     checks the user input for exit, if item already in cart, or if user input is invalid
     """
     global order_total_before_tax
     user_input = input('What would you like to order? Or type "order" to see what is in your cart: ').lower()
+    input_list = user_input.split(' ')
     if user_input == 'quit':
         exit()
-    if user_input == 'menu':
+    elif user_input == 'menu':
         generate_menu()
 
-    if user_input == 'order':
-        display_order()
+    elif user_input == 'order':
+        print(specific_order.display_order())
 
-    if user_input.find('remove') != -1:
-        remove(user_input[7:])
-
+    elif user_input.find('remove') != -1:
+        Order.remove_item(specific_order, user_input[7:])
     for i in menu:
         if user_input == i['kind']:
             print(i['item'] + str(i['price']))
-
-    for i in menu:
-        if user_input == i['item']:
-            add_to_cart(user_input)
-    else:
-        print('Please look at our menu and choose something we have!')
-        check()
-
-
-def run():
-    greeting()
-    generate_menu()
-    check()
+        elif input_list[0] == i['item']:
+            if (len(input_list) > 1):
+                result = specific_order.add_item(i, int(input_list[-1]))
+                print(result)
+            else:
+                result = specific_order.add_item(i)
+                print(result)
+        else:
+            pass
+    check(menu)
 
 
-def display_order():
-    """
-    displays just the items being ordered
-    """
-    print(' \n')
-    if not len(order):
-        print('Your cart is empty!')
-    for i in menu:
-        if i['count'] > 0:
-            print(str(i['item']) + ' x' + str(i['count']) + ' $' + str(round(i['price'], 2)))
-
-
-def total_cost():
-    """
-    totals the cost of the order
-    """
-    global order_total_before_tax
-    for i in menu:
-        if i['item'] in order:
-            order_total_before_tax += i['price']
-    tax = order_total_before_tax * 0.101
-    total_with_tax = tax + order_total_before_tax
-    print('--------------------------------')
-    print('Subtotal $' + str(round(order_total_before_tax, 2)))
-    print(' \n')
-    print('Sales Tax $' + str(round(tax, 2)))
-    print(' \n')
-    print('Total Due $' + str(round(total_with_tax, 2)))
-    print('**********************************')
+# def total_cost(menu):
+#     """
+#     totals the cost of the order
+#     """
+#     global order_total_before_tax
+#     for i in menu:
+#         if i['item'] in order_list:
+#             order_total_before_tax += i['price']
+#     tax = order_total_before_tax * 0.101
+#     total_with_tax = tax + order_total_before_tax
+#     print('--------------------------------')
+#     print('Subtotal $' + str(round(order_total_before_tax, 2)))
+#     print(' \n')
+#     print('Sales Tax $' + str(round(tax, 2)))
+#     print(' \n')
+#     print('Total Due $' + str(round(total_with_tax, 2)))
+#     print('**********************************')
 
 
 def exit():
     """
     displays receipt and exits
     """
-    order_num = uuid.uuid4()
+    # order_num = uuid.uuid4()
     print('The Snakes Cafe')
     print('Eatability Counts')
-
-    print('Order #' + str(order_num))
+    print(specific_order.display_order())
+    print('Order #' + str(specific_order.uuid))
     print('==============================')
-    display_order()
     print('------------------------------')
-    total_cost()
+    specific_order.print_receipt()
+    # total_cost()
     sys.exit()
 
 
@@ -265,9 +265,8 @@ if __name__ == '__main__':
     """
     runs the file on start
     """
-    run()
+    try:
+        run()
+    except KeyboardInterrupt:
+        exit()
 
-"""
-dictionary of dictionaries
-category item, price, quantity
-"""

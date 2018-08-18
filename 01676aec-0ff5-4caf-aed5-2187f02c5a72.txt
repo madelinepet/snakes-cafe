@@ -1,0 +1,9 @@
+ketchup x1 $4.44
+
+fruit x1 $12.44
+
+joy x1 $1.44
+
+rage x10 $24.4
+
+Your total before tax is $42.72

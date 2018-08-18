@@ -34,4 +34,8 @@
 ### Wednesday 8/15/2018 8:42PM: Fixed refactoring indent bug that I hadn't noticed was why everything was breaking. Now I seem to have basic functionality again. Now to add some of the other lab requirements.
 ### Wednesday 8/15/2018 9:14PM: Fixed display category bug. Too many for loops, deleted whole function.
 ### Wednesday 8/15/2018 9:34PM: Submission for the day. Totaling bug
+### Thursday 8/16/2018 8:14PM: Class for order handling established. Code bugs on input and on typing order.
+### Thursday 8/16/2018 9:01PM: Menu not defined error: now functionality to load from external menu or to load original menu. More debugging to come.
+### Thursday 8/16/2018 10:01PM: Lots of bugs, but new functionality in loading menu if I can figure out a bug with my try/except and another with my for loops.
+### Saturday 8/18/2018 1:44PM: Fixed lots of bugs! Needs some touch ups, esp to remove method.
 
