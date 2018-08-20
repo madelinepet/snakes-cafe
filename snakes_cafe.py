@@ -5,13 +5,10 @@ import csv
 
 WIDTH = 96
 
-# menu = []
-
 
 def run():
     """ Runs the script, and error handles if path is bad
     """
-    # global menu
     print('Which menu would you like to use? Your own .csv or our original menu?')
     menu_input = input('Type "original" or "csv": ')
     if menu_input == 'quit':
@@ -89,32 +86,31 @@ class Order:
                 self.order_dict[item['item']] = {'count': amount, 'price': item['price']}
                 return str(amount) + ' order(s) of ' + item['item'] + ' has been added to your cart!\n Subtotal $' + str(round(order_total_before_tax, 2))
 
-    def remove_item(self, user_input, menu, count=1):
+    def remove_item(self, item, order_to_remove):
         """
         removes an item from the order
         """
-        if user_input in order_list:
-            order_to_remove = user_input
-            order_list.remove(order_to_remove)
-            for i in menu:
-                if i['count'] > 0:
-                    i['count'] = i['count'] - 1
-            print('One order of ' + order_to_remove + ' removed')
-        check(menu)
+        if item['item'] in self.order_dict:
+            # del self.order_dict['item']
+            # if self.order_dict[item['item']] == item['item']:
+            if self.order_dict[item['item']]['count'] > 0:
+                self.order_dict[item['item']]['count'] = self.order_dict[item['item']]['count'] - 1
+            return('One order of ' + order_to_remove + ' removed')
+        else:
+            pass
 
     def display_order(self):
         """ Display the order and total to the screen
         """
         total = 0
-        final_string_you_should_rename_this = ''
+        final_string = ''
         if not len(specific_order.order_dict):
             return 'Your cart is empty!'
         for key in specific_order.order_dict.keys():
             item_total = round(specific_order.order_dict[key]['price'] * specific_order.order_dict[key]['count'], 2)
-            # print(key + ' x' + str(specific_order.order_dict[key]['count']) + ' $' + str(item_total))
-            final_string_you_should_rename_this = final_string_you_should_rename_this + key + ' x' + str(specific_order.order_dict[key]['count']) + ' $' + str(item_total) + '\n\n'
+            final_string_you_should_rename_this = final_string + key + ' x' + str(specific_order.order_dict[key]['count']) + ' $' + str(item_total) + '\n\n'
             total += item_total
-        final_string_you_should_rename_this = final_string_you_should_rename_this + 'Your total before tax is $' + str(total)
+        final_string_you_should_rename_this = final_string + 'Your total before tax is $' + str(total)
         return final_string_you_should_rename_this
 
     def print_receipt(self):
@@ -204,16 +200,19 @@ def check(menu):
     if user_input == 'quit':
         exit()
     elif user_input == 'menu':
-        generate_menu()
+        generate_menu(menu)
 
     elif user_input == 'order':
         print(specific_order.display_order())
 
-    elif user_input.find('remove') != -1:
-        Order.remove_item(specific_order, user_input[7:])
     for i in menu:
         if user_input == i['kind']:
             print(i['item'] + str(i['price']))
+        elif user_input.find('remove') != -1:
+            order_to_remove = user_input[7:]
+            result = specific_order.remove_item(i, order_to_remove)
+            # if result != 'None':
+            #     print(result)
         elif input_list[0] == i['item']:
             if (len(input_list) > 1):
                 result = specific_order.add_item(i, int(input_list[-1]))
@@ -226,30 +225,10 @@ def check(menu):
     check(menu)
 
 
-# def total_cost(menu):
-#     """
-#     totals the cost of the order
-#     """
-#     global order_total_before_tax
-#     for i in menu:
-#         if i['item'] in order_list:
-#             order_total_before_tax += i['price']
-#     tax = order_total_before_tax * 0.101
-#     total_with_tax = tax + order_total_before_tax
-#     print('--------------------------------')
-#     print('Subtotal $' + str(round(order_total_before_tax, 2)))
-#     print(' \n')
-#     print('Sales Tax $' + str(round(tax, 2)))
-#     print(' \n')
-#     print('Total Due $' + str(round(total_with_tax, 2)))
-#     print('**********************************')
-
-
 def exit():
     """
     displays receipt and exits
     """
-    # order_num = uuid.uuid4()
     print('The Snakes Cafe')
     print('Eatability Counts')
     print(specific_order.display_order())
@@ -257,7 +236,6 @@ def exit():
     print('==============================')
     print('------------------------------')
     specific_order.print_receipt()
-    # total_cost()
     sys.exit()
 
 
