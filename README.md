@@ -39,3 +39,4 @@
 ### Thursday 8/16/2018 10:01PM: Lots of bugs, but new functionality in loading menu if I can figure out a bug with my try/except and another with my for loops.
 ### Saturday 8/18/2018 1:44PM: Fixed lots of bugs! Needs some touch ups, esp to remove method.
 
+# Sam was here in your codez!!!
